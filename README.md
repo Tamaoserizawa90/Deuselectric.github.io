@@ -1,2 +1,1724 @@
-# Deuselectric.github.io
-Site vitrine 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deus Electric — Électricité Industrielle & Rebobinage Moteurs | Pointe-Noire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir: #0a0a0a;
+      --acier: #1a1f2e;
+      --orange: #ff6b1a;
+      --orange-clair: #ff8c42;
+      --gris: #8a8fa8;
+      --blanc: #f5f5f0;
+      --ligne: rgba(255,107,26,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--noir);
+      color: var(--blanc);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--ligne);
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+    }
+    .logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--gris);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+
+    /* ══════════════════════════════
+       HERO avec image de couverture
+    ══════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* L'image de fond industrielle */
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=80');
+      background-size: cover;
+      background-position: center 40%;
+      filter: brightness(0.35) saturate(0.7);
+      z-index: 0;
+      transition: transform 8s ease;
+    }
+    .hero:hover .hero-img { transform: scale(1.03); }
+
+    /* Dégradé par-dessus pour lisibilité */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.3) 60%, transparent 100%),
+        linear-gradient(0deg, rgba(10,10,10,0.7) 0%, transparent 50%);
+      z-index: 1;
+    }
+
+    /* Grille décorative */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, var(--ligne) 0, var(--ligne) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg,  var(--ligne) 0, var(--ligne) 1px, transparent 1px, transparent 80px);
+      opacity: 0.25;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,107,26,0.15);
+      border: 1px solid rgba(255,107,26,0.4);
+      color: var(--orange-clair);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.4; transform:scale(1.5); }
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    }
+    h1 .accent { color: var(--orange); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: rgba(245,245,240,0.8);
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .btn-primary:hover { background: var(--orange-clair); transform: translateY(-2px); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.08);
+      color: var(--blanc);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(4px);
+    }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,107,26,0.25);
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .stat-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 0.78rem;
+      color: rgba(245,245,240,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 0.2rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ══════════════════════════════
+       SECTIONS communes
+    ══════════════════════════════ */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+    .section-intro {
+      color: var(--gris);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 520px;
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════
+       SERVICES avec images
+    ══════════════════════════════ */
+    #services {
+      background: var(--acier);
+      position: relative;
+    }
+    #services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--noir);
+      border: 1px solid rgba(255,107,26,0.12);
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .service-card:hover {
+      border-color: rgba(255,107,26,0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(255,107,26,0.12);
+    }
+
+    /* Conteneur image en haut de la carte */
+    .card-img {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) saturate(0.8);
+      transition: transform 0.4s ease, filter 0.3s;
+    }
+    .service-card:hover .card-img img {
+      transform: scale(1.06);
+      filter: brightness(0.9) saturate(1);
+    }
+
+    /* Étiquette flottante sur l'image */
+    .card-img-tag {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 0.8rem;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-body h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.7rem;
+      color: var(--blanc);
+    }
+    .card-body p {
+      color: var(--gris);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* Ligne décorative en bas */
+    .card-footer-line {
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange) 0%, transparent 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover .card-footer-line { transform: scaleX(1); }
+
+    /* ══════════════════════════════
+       GALERIE PHOTO (nouvelle section)
+    ══════════════════════════════ */
+    #galerie { background: var(--noir); }
+
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 220px 220px;
+      gap: 4px;
+      margin-top: 2.5rem;
+    }
+
+    .gal-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gal-item:first-child {
+      grid-row: 1 / 3; /* Grande image à gauche */
+    }
+    .gal-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) saturate(0.7);
+      transition: all 0.4s;
+    }
+    .gal-item:hover img {
+      filter: brightness(1) saturate(1);
+      transform: scale(1.04);
+    }
+    .gal-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(255,107,26,0.6) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+    .gal-item:hover .gal-overlay { opacity: 1; }
+    .gal-overlay span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* ══════════════════════════════
+       À PROPOS
+    ══════════════════════════════ */
+    #about { background: var(--acier); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    /* Photo de profil / image atelier */
+    .about-photo {
+      position: relative;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      filter: brightness(0.85) saturate(0.75);
+      display: block;
+    }
+    .about-photo::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: -8px;
+      right: 8px; bottom: 8px;
+      border: 2px solid var(--orange);
+      z-index: -1;
+    }
+    .about-photo-badge {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      background: var(--orange);
+      color: #fff;
+      padding: 1rem 1.4rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .about-text p {
+      color: var(--gris);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .about-text p strong { color: var(--blanc); }
+
+    .atouts-list { list-style: none; margin-top: 1.5rem; }
+    .atouts-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--ligne);
+      font-size: 0.88rem;
+      color: var(--gris);
+      line-height: 1.5;
+    }
+    .atouts-list li:last-child { border-bottom: none; }
+    .atouts-list li::before {
+      content: '▸';
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ══════════════════════════════
+       SECTEURS
+    ══════════════════════════════ */
+    #secteurs { background: var(--noir); }
+    .secteurs-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .secteur-tag {
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--ligne);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--gris);
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .secteur-tag:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ══════════════════════════════
+       CONTACT
+    ══════════════════════════════ */
+    #contact { background: var(--acier); text-align: center; }
+    #contact .section-intro { margin: 0 auto 3rem; }
+
+    .contact-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 2rem 2.5rem;
+      background: var(--noir);
+      border: 1px solid var(--ligne);
+      min-width: 200px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+    .contact-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+    .contact-card .cc-icon { font-size: 2rem; }
+    .contact-card .cc-label {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .contact-card .cc-val { font-size: 0.9rem; color: var(--gris); font-weight: 300; }
+
+    .zone { margin-top: 3rem; font-size: 0.82rem; color: var(--gris); }
+    .zone strong { color: var(--blanc); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--ligne);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    footer p { font-size: 0.78rem; color: var(--gris); }
+
+    /* ══════════════════════════════
+       MOBILE
+    ══════════════════════════════ */
+    @media (max-width: 720px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.72rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .hero { padding: 5.5rem 1.2rem 3rem; }
+      .hero-stats { gap: 1.8rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .galerie-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 160px 160px 160px;
+      }
+      .gal-item:first-child { grid-row: auto; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photo img { height: 260px; }
+    }
+
+    /* ══════════════════════════════
+       SECTEURS — tags cliquables
+    ══════════════════════════════ */
+    .secteur-tag {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    .secteur-tag .tag-hint {
+      position: absolute;
+      top: -22px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .secteur-tag:hover .tag-hint { opacity: 1; }
+
+    /* ══════════════════════════════
+       MODALS
+    ══════════════════════════════ */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--acier);
+      border: 1px solid rgba(255,107,26,0.25);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(30px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .modal-backdrop.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Scrollbar discrète */
+    .modal::-webkit-scrollbar { width: 4px; }
+    .modal::-webkit-scrollbar-track { background: var(--acier); }
+    .modal::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+
+    .modal-hero {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.7) saturate(0.8);
+    }
+
+    .modal-hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 220px;
+      background: linear-gradient(0deg, var(--acier) 0%, transparent 60%);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,107,26,0.3);
+      color: var(--blanc);
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s;
+    }
+    .modal-close:hover { background: var(--orange); border-color: var(--orange); }
+
+    .modal-body { padding: 0 2rem 2rem; margin-top: -2rem; position: relative; }
+
+    .modal-sector-label {
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.4rem;
+    }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .modal-intro {
+      font-size: 0.92rem;
+      color: var(--gris);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--ligne);
+    }
+
+    .modal-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-block h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .modal-block ul {
+      list-style: none;
+      padding: 0;
+    }
+    .modal-block ul li {
+      font-size: 0.85rem;
+      color: var(--gris);
+      line-height: 1.6;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(255,107,26,0.08);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .modal-block ul li::before {
+      content: '▸';
+      color: var(--orange);
+      position: absolute;
+      left: 0;
+      font-size: 0.7rem;
+      top: 0.45rem;
+    }
+
+    .modal-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--ligne);
+      padding-top: 1.5rem;
+    }
+    .modal-gallery img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      filter: brightness(0.75) saturate(0.7);
+      transition: all 0.3s;
+    }
+    .modal-gallery img:hover {
+      filter: brightness(1) saturate(1);
+      transform: scale(1.03);
+    }
+
+    .modal-cta {
+      margin-top: 1.8rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (max-width: 600px) {
+      .modal-cols { grid-template-columns: 1fr; gap: 1.2rem; }
+      .modal-gallery { grid-template-columns: 1fr 1fr; }
+      .modal-body { padding: 0 1.2rem 1.5rem; }
+      .modal-title { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <div class="logo">Deus<span>Electric</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="accueil">
+  <!-- Image de couverture : atelier industriel/électrique -->
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Disponible à Pointe-Noire</div>
+    <h1>
+      Électricité<br>
+      Industrielle<br>
+      <span class="accent">&amp; Moteurs</span>
+    </h1>
+    <p class="hero-sub">
+      Rebobinage de moteurs électriques, maintenance industrielle,
+      installation et dépannage. Des solutions fiables pour vos équipements
+      dans le secteur pétrolier, minier et industriel.
+    </p>
+    <div class="hero-cta">
+      <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20service%20électrique"
+         class="btn btn-primary" target="_blank">💬 Demander un devis</a>
+      <a href="#services" class="btn btn-ghost">Voir les services</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">6+</div><div class="stat-lbl">Années d'expérience terrain</div></div>
+      <div><div class="stat-val">100%</div><div class="stat-lbl">Travail garanti</div></div>
+      <div><div class="stat-val">24h</div><div class="stat-lbl">Réponse rapide</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">// Ce que je fais</div>
+    <h2>Prestations</h2>
+    <p class="section-intro">
+      Interventions sur site ou en atelier, pour les entreprises et les particuliers
+      de Pointe-Noire et alentours.
+    </p>
+
+    <div class="services-grid">
+
+      <!-- CARTE 1 : Moteur asynchrone -->
+      <div class="service-card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=75"
+            alt="Moteur électrique asynchrone triphasé"
+            loading="lazy"
+          />
+          <span class="card-img-tag">Rebobinage</span>
+        </div>
+        <div class="card-body">
+          <h3>Rebobinage de Moteurs</h3>
+          <p>Rebobinage complet de moteurs électriques triphasés et monophasés. Diagnostic, démontage, bobinage, imprégnation et tests de mise en marche.</p>
+        </div>
+        <div class="card-footer-line"></div>
+      </div>
+
+      <!-- CARTE 2 : Tableau / installation électrique -->
+      <div class="service-card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75"
+            alt="Tableau électrique industriel installation"
+            loading="lazy"
+          />
+          <span class="card-img-tag">Installation</span>
+        </div>
+        <div class="card-body">
+          <h3>Installation Électrique</h3>
+          <p>Installation de tableaux de distribution, câblage industriel, raccordement de machines et équipements. Travaux conformes aux normes en vigueur.</p>
+        </div>
+        <div class="card-footer-line"></div>
+      </div>
+
+      <!-- CARTE 3 : Transformateur -->
+      <div class="service-card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=75"
+            alt="Transformateur électrique haute tension"
+            loading="lazy"
+          />
+          <span class="card-img-tag">Maintenance</span>
+        </div>
+        <div class="card-body">
+          <h3>Maintenance Préventive</h3>
+          <p>Programmes de maintenance préventive pour groupes électrogènes, transformateurs et équipements électriques industriels. Fiches de maintenance détaillées.</p>
+        </div>
+        <div class="card-footer-line"></div>
+      </div>
+
+      <!-- CARTE 4 : Dépannage / diagnostic -->
+      <div class="service-card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=75"
+            alt="Technicien diagnostic électrique industriel"
+            loading="lazy"
+          />
+          <span class="card-img-tag">Dépannage</span>
+        </div>
+        <div class="card-body">
+          <h3>Diagnostic & Dépannage</h3>
+          <p>Localisation rapide des pannes électriques et mécaniques. Intervention d'urgence pour limiter l'arrêt de production.</p>
+        </div>
+        <div class="card-footer-line"></div>
+      </div>
+
+      <!-- CARTE 5 : Démarrage étoile-triangle -->
+      <div class="service-card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=75"
+            alt="Câblage armoire électrique démarrage moteur"
+            loading="lazy"
+          />
+          <span class="card-img-tag">Câblage</span>
+        </div>
+        <div class="card-body">
+          <h3>Démarrage Étoile-Triangle</h3>
+          <p>Conception et câblage de systèmes de démarrage étoile-triangle et démarreurs progressifs pour moteurs industriels.</p>
+        </div>
+        <div class="card-footer-line"></div>
+      </div>
+
+      <!-- CARTE 6 : Réseau distribution -->
+      <div class="service-card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=75"
+            alt="Réseau distribution électrique pylônes"
+            loading="lazy"
+          />
+          <span class="card-img-tag">Réseaux</span>
+        </div>
+        <div class="card-body">
+          <h3>Réseaux & Distribution</h3>
+          <p>Travaux sur réseaux de distribution électrique, transformateurs HTA/BT, armoires de compensation et équipements associés.</p>
+        </div>
+        <div class="card-footer-line"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALERIE ═══════════════ -->
+<section id="galerie">
+  <div class="container">
+    <div class="section-label">// Équipements & travaux</div>
+    <h2>Galerie</h2>
+    <p class="section-intro">
+      Moteurs asynchrones, transformateurs, armoires — les équipements
+      sur lesquels j'interviens au quotidien.
+    </p>
+
+    <div class="galerie-grid">
+
+      <!-- Grande image gauche : moteur asynchrone ouvert -->
+      <div class="gal-item">
+        <img
+          src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80"
+          alt="Moteur asynchrone triphasé ouvert rebobinage"
+          loading="lazy"
+        />
+        <div class="gal-overlay"><span>Moteur asynchrone triphasé</span></div>
+      </div>
+
+      <!-- Image haute droite -->
+      <div class="gal-item">
+        <img
+          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&q=75"
+          alt="Transformateur électrique"
+          loading="lazy"
+        />
+        <div class="gal-overlay"><span>Transformateur HTA/BT</span></div>
+      </div>
+
+      <!-- Image basse droite haut -->
+      <div class="gal-item">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=75"
+          alt="Armoire électrique industrielle"
+          loading="lazy"
+        />
+        <div class="gal-overlay"><span>Armoire de distribution</span></div>
+      </div>
+
+      <!-- Bas gauche -->
+      <div class="gal-item">
+        <img
+          src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=500&q=75"
+          alt="Câblage industriel moteur"
+          loading="lazy"
+        />
+        <div class="gal-overlay"><span>Câblage démarrage moteur</span></div>
+      </div>
+
+      <!-- Bas droite -->
+      <div class="gal-item">
+        <img
+          src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=500&q=75"
+          alt="Technicien en intervention électrique"
+          loading="lazy"
+        />
+        <div class="gal-overlay"><span>Intervention terrain</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ À PROPOS ═══════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">// Pourquoi me choisir</div>
+    <h2>Expérience de terrain,<br>résultats concrets</h2>
+
+    <div class="about-grid">
+
+      <div class="about-photo">
+        <!-- Image d'atelier / technicien au travail -->
+        <img
+          src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80"
+          alt="Technicien électricien industriel en intervention"
+          loading="lazy"
+        />
+        <div class="about-photo-badge">
+          6+ ans<br>d'expérience
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p>
+          Technicien électricien avec plus de <strong>6 ans d'expérience</strong> acquise
+          auprès d'entreprises industrielles à Pointe-Noire — pétrole,
+          télécommunications, construction.
+          Formation certifiée en électrotechnique et rebobinage de moteurs.
+        </p>
+        <p>
+          J'ai travaillé avec des sociétés comme <strong>S.A.T Congo</strong>,
+          <strong>Airtel Congo</strong>, <strong>SCI-NDT</strong> et <strong>SOCO SERVICE</strong> —
+          des environnements exigeants qui forment les meilleurs réflexes.
+        </p>
+        <ul class="atouts-list">
+          <li>Technicien formé et certifié en électrotechnique industrielle</li>
+          <li>Maîtrise des moteurs triphasés, schémas de puissance et de commande</li>
+          <li>Expérience avec générateurs, transformateurs et réseaux de distribution</li>
+          <li>Intervention rapide avec compte-rendu d'intervention systématique</li>
+          <li>Devis transparent avant toute intervention — pas de surprises</li>
+          <li>Travail soigné, respect des normes et suivi après prestation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SECTEURS ═══════════════ -->
+<section id="secteurs">
+  <div class="container">
+    <div class="section-label">// Secteurs d'activité</div>
+    <h2>Qui je sers</h2>
+    <p class="section-intro" style="margin-bottom:2rem;">
+      Appuyez sur un secteur pour découvrir les équipements, les risques
+      et les types d'intervention que je réalise dans cette filière.
+    </p>
+    <div class="secteurs-flex">
+      <div class="secteur-tag" onclick="openModal('petrole')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        Pétrole &amp; Gaz
+      </div>
+      <div class="secteur-tag" onclick="openModal('mines')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        Mines &amp; Carrières
+      </div>
+      <div class="secteur-tag" onclick="openModal('btp')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        BTP &amp; Construction
+      </div>
+      <div class="secteur-tag" onclick="openModal('telecom')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        Télécommunications
+      </div>
+      <div class="secteur-tag" onclick="openModal('agro')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        Agroalimentaire
+      </div>
+      <div class="secteur-tag" onclick="openModal('hotels')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        Hôtels &amp; Résidences
+      </div>
+      <div class="secteur-tag" onclick="openModal('imprimeries')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        Imprimeries &amp; Ateliers
+      </div>
+      <div class="secteur-tag" onclick="openModal('pme')">
+        <span class="tag-hint">↗ En savoir plus</span>
+        PME locales
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ MODALS SECTEURS ═══════════════ -->
+
+<!-- ── PÉTROLE & GAZ ── -->
+<div class="modal-backdrop" id="modal-petrole">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('petrole')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&q=80" alt="Pétrole et gaz plateforme industrielle" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">Pétrole &amp; Gaz</div>
+      <p class="modal-intro">
+        Le secteur pétrolier est le principal moteur économique de Pointe-Noire. Les installations
+        de forage, de raffinage et de pompage font tourner en permanence des centaines de moteurs
+        électriques et de transformateurs soumis à des conditions extrêmes — chaleur, humidité,
+        vibrations, poussière et gaz corrosifs. Une panne non anticipée peut stopper toute
+        une chaîne de production et engendrer des pertes considérables. La maintenance électrique
+        rigoureuse n'est pas une option : c'est une obligation de sécurité.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Moteurs de pompes de transfert (centrifuges, volumétriques)</li>
+            <li>Moteurs de compresseurs de gaz</li>
+            <li>Transformateurs HTA/BT de site</li>
+            <li>Groupes électrogènes de secours</li>
+            <li>Armoires de démarrage et variateurs de vitesse</li>
+            <li>Systèmes d'éclairage ATEX (zones explosibles)</li>
+            <li>Câblages et chemins de câbles en environnement corrosif</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Surchauffe des moteurs par surcharge ou mauvaise ventilation</li>
+            <li>Défaut d'isolement accéléré par l'humidité et les hydrocarbures</li>
+            <li>Rupture de bobinage sous vibrations continues</li>
+            <li>Court-circuit en zone ATEX — risque d'explosion</li>
+            <li>Arrêt de production : coût horaire très élevé</li>
+            <li>Corrosion des connexions et des jeux de barres</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Rebobinage de moteurs de pompes et compresseurs</li>
+            <li>Remplacement et reconfiguration de bobinages triphasés</li>
+            <li>Contrôle d'isolement (mégohmmètre) et tests de continuité</li>
+            <li>Câblage et maintenance d'armoires de démarrage étoile-triangle</li>
+            <li>Maintenance préventive avec fiches de suivi détaillées</li>
+            <li>Dépannage d'urgence pour réduire l'arrêt de production</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Notions clés</h4>
+          <ul>
+            <li><strong>Classe d'isolement :</strong> les bobinages doivent résister à la chaleur (classe F ou H pour ce secteur)</li>
+            <li><strong>ATEX :</strong> équipements certifiés pour les atmosphères explosives</li>
+            <li><strong>Facteur de puissance :</strong> un mauvais cos φ sur site pétrolier génère des pénalités et des surchauffes</li>
+            <li><strong>Protection IP :</strong> les moteurs exposés doivent être étanches (IP55 minimum)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=70" alt="Plateforme pétrolière" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur pompe industrielle" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Armoire électrique site pétrolier" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20le%20secteur%20p%C3%A9trolier%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Pétrole &amp; Gaz</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MINES & CARRIÈRES ── -->
+<div class="modal-backdrop" id="modal-mines">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('mines')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1578323851363-cf6c1a0ac6b7?w=900&q=80" alt="Mine carrière industrie extractive" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">Mines &amp; Carrières</div>
+      <p class="modal-intro">
+        L'industrie extractive utilise des moteurs électriques parmi les plus puissants et les
+        plus sollicités qui existent. Concasseurs, convoyeurs, broyeurs, pompes de drainage —
+        tous fonctionnent souvent 24h/24 dans des environnements poussiéreux, humides et
+        mécaniquement agressifs. Le moindre arrêt non planifié sur une carrière arrête toute
+        la chaîne de production en aval. La fiabilité électrique y est donc absolument critique.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Moteurs de concasseurs et broyeurs (forte puissance)</li>
+            <li>Moteurs de convoyeurs à bandes</li>
+            <li>Pompes de drainage des galeries</li>
+            <li>Ventilateurs de galeries et extracteurs</li>
+            <li>Transformateurs de puissance sur site</li>
+            <li>Groupes électrogènes et tableaux de distribution</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Usure rapide des bobinages par poussières abrasives</li>
+            <li>Surcharge mécanique fréquente sur les démarrages</li>
+            <li>Humidité en galerie : dégradation de l'isolement électrique</li>
+            <li>Vibrations extrêmes sur concasseurs : rupture de connexions</li>
+            <li>Panne de pompe de drainage : risque d'inondation de galerie</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Rebobinage de moteurs lourds (concasseurs, broyeurs)</li>
+            <li>Démarrage étoile-triangle pour limiter les appels de courant</li>
+            <li>Maintenance des tableaux de distribution sur site</li>
+            <li>Remplacement de câblage dégradé par abrasion</li>
+            <li>Tests d'isolement réguliers pour prévenir les défauts</li>
+            <li>Fiches de maintenance préventive personnalisées</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Notions clés</h4>
+          <ul>
+            <li><strong>Courant de démarrage :</strong> un moteur de concasseur peut appeler 6 à 7× son courant nominal au démarrage — le démarrage étoile-triangle réduit ce choc</li>
+            <li><strong>IP6X :</strong> protection totale contre les poussières, indispensable en carrière</li>
+            <li><strong>Protection thermique :</strong> sondes PTC dans les bobinages pour couper avant la destruction</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1578323851363-cf6c1a0ac6b7?w=400&q=70" alt="Carrière mine extraction" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur industriel lourd" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=400&q=70" alt="Câblage armoire mine" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20le%20secteur%20minier%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Mines &amp; Carrières</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BTP & CONSTRUCTION ── -->
+<div class="modal-backdrop" id="modal-btp">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('btp')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="BTP chantier construction" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">BTP &amp; Construction</div>
+      <p class="modal-intro">
+        Le secteur du bâtiment et des travaux publics est un gros consommateur d'énergie
+        électrique, tant sur chantier (grues, élévateurs, malaxeurs, compresseurs) que
+        dans les bâtiments livrés (distribution, éclairage, climatisation). À Pointe-Noire,
+        la forte activité de construction crée une demande permanente d'électriciens qualifiés
+        capables d'intervenir en phase chantier comme en maintenance post-livraison.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Moteurs de grues et treuils de chantier</li>
+            <li>Malaxeurs et bétonnières électriques</li>
+            <li>Compresseurs et élévateurs de chantier</li>
+            <li>Tableaux de chantier (TGBT provisoires)</li>
+            <li>Groupes électrogènes de chantier</li>
+            <li>Réseaux de distribution définitifs (bâtiment livré)</li>
+            <li>Moteurs de pompes à eau et d'ascenseurs</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Alimentation provisoire instable : surtensions fréquentes</li>
+            <li>Moteurs de chantier sollicités en cycle court intense</li>
+            <li>Environnement poussiéreux et humide : dégradation rapide</li>
+            <li>Non-conformité des installations : risque légal et sécuritaire</li>
+            <li>Délais serrés : une panne bloque tout un corps de métier</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Installation et câblage de tableaux de distribution (TGBT)</li>
+            <li>Raccordement et mise en service de machines de chantier</li>
+            <li>Rebobinage de moteurs de malaxeurs et compresseurs</li>
+            <li>Contrôle de conformité des installations électriques</li>
+            <li>Mise en place de protections différentielles et disjoncteurs</li>
+            <li>Dépannage rapide pour ne pas bloquer le chantier</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Notions clés</h4>
+          <ul>
+            <li><strong>TGBT :</strong> Tableau Général Basse Tension — cœur de la distribution électrique d'un bâtiment</li>
+            <li><strong>Disjoncteur différentiel :</strong> coupe le circuit en cas de fuite de courant — obligatoire pour la sécurité des personnes</li>
+            <li><strong>Mise à la terre :</strong> protection essentielle sur chantier pour éviter l'électrocution</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=70" alt="Chantier BTP construction" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Tableau électrique bâtiment" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=400&q=70" alt="Câblage installation électrique" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20le%20BTP%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis BTP &amp; Construction</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TÉLÉCOMMUNICATIONS ── -->
+<div class="modal-backdrop" id="modal-telecom">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('telecom')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80" alt="Télécommunications antenne relais" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">Télécommunications</div>
+      <p class="modal-intro">
+        Les opérateurs de télécommunications (comme Airtel Congo, avec lequel j'ai
+        directement collaboré) exploitent des centaines de stations relais et de centres
+        techniques dont la continuité électrique est vitale. Une coupure de courant
+        non gérée, c'est un réseau mobile qui tombe dans une zone entière. La fiabilité
+        des groupes électrogènes de secours, des redresseurs et des systèmes
+        d'alimentation sans interruption (ASI/UPS) est donc une priorité absolue.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Groupes électrogènes de secours (stations BTS)</li>
+            <li>Systèmes d'alimentation sans interruption (ASI/UPS)</li>
+            <li>Redresseurs et chargeurs de batteries</li>
+            <li>Climatiseurs de baies techniques (moteurs ventilateurs)</li>
+            <li>Tableaux de transfert automatique (ATS)</li>
+            <li>Câblages et chemins de câbles en salle technique</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Coupure réseau : impact direct sur milliers d'abonnés</li>
+            <li>Surchauffe des baies : destruction d'équipements coûteux</li>
+            <li>Défaillance du groupe de secours : aucune redondance</li>
+            <li>Mauvaise maintenance des batteries : capacité réduite à zéro</li>
+            <li>Parasites électriques : perturbation des équipements sensibles</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Maintenance préventive des groupes électrogènes (vidanges, tests)</li>
+            <li>Vérification et remplacement des batteries ASI</li>
+            <li>Maintenance des moteurs de climatiseurs de baies</li>
+            <li>Contrôle et câblage des systèmes de transfert automatique</li>
+            <li>Fiches de maintenance avec relevés de mesures datés</li>
+            <li>Intervention d'urgence lors de coupures réseau</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Notions clés</h4>
+          <ul>
+            <li><strong>ATS (Automatic Transfer Switch) :</strong> bascule automatiquement sur le groupe en cas de coupure réseau — doit être testé régulièrement</li>
+            <li><strong>ASI/UPS :</strong> garantit quelques minutes à quelques heures de continuité le temps que le groupe démarre</li>
+            <li><strong>Maintenance préventive :</strong> sur ce secteur, elle est non-négociable — le correctif coûte 10× plus cher</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=70" alt="Station BTS télécommunications" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=70" alt="Réseau distribution électrique" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=70" alt="Technicien maintenance électrique" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20les%20t%C3%A9l%C3%A9communications%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Télécommunications</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── AGROALIMENTAIRE ── -->
+<div class="modal-backdrop" id="modal-agro">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('agro')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=900&q=80" alt="Industrie agroalimentaire production" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">Agroalimentaire</div>
+      <p class="modal-intro">
+        Les unités de transformation alimentaire — boulangeries industrielles, huileries,
+        brasseries, unités de congélation — reposent entièrement sur des moteurs électriques
+        fiables. Malaxeurs, convoyeurs, pompes de transfert, compresseurs de chambres froides :
+        chaque équipement doit fonctionner en continu. Une panne en chambre froide peut
+        signifier la perte de plusieurs tonnes de marchandises en quelques heures.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Moteurs de malaxeurs et pétrins industriels</li>
+            <li>Compresseurs de chambres froides et congélateurs</li>
+            <li>Moteurs de convoyeurs de production</li>
+            <li>Pompes de transfert de liquides alimentaires</li>
+            <li>Moteurs de moulins et broyeurs</li>
+            <li>Tableaux de distribution de l'unité de production</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Panne chambre froide : perte totale du stock réfrigéré</li>
+            <li>Humidité des locaux : dégradation rapide de l'isolement</li>
+            <li>Nettoyage haute pression : infiltration d'eau dans les moteurs</li>
+            <li>Surcharge régulière sur les malaxeurs : usure prématurée</li>
+            <li>Arrêt de chaîne : impact direct sur les délais de livraison</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Rebobinage de moteurs de malaxeurs et compresseurs</li>
+            <li>Maintenance préventive des moteurs de chambres froides</li>
+            <li>Vérification de l'étanchéité (IP) des moteurs en zone humide</li>
+            <li>Câblage et remplacement de tableaux de distribution</li>
+            <li>Dépannage urgent sur panne chambre froide</li>
+            <li>Mise en place de protections thermiques sur moteurs critiques</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Notions clés</h4>
+          <ul>
+            <li><strong>IP55/IP56 :</strong> protection contre jets d'eau — obligatoire pour les moteurs en zone de lavage</li>
+            <li><strong>Classe F :</strong> bobinages résistant à 155°C — idéal pour les moteurs de compresseurs qui chauffent</li>
+            <li><strong>Sonde PTC :</strong> capteur thermique dans le bobinage qui coupe le moteur avant destruction par surchauffe</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&q=70" alt="Industrie agroalimentaire" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur compresseur frigorifique" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Tableau électrique production" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20l%27agroalimentaire%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Agroalimentaire</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HÔTELS & RÉSIDENCES ── -->
+<div class="modal-backdrop" id="modal-hotels">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('hotels')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="Hôtel résidence luxe électricité" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">Hôtels &amp; Résidences</div>
+      <p class="modal-intro">
+        Les hôtels et résidences haut de gamme de Pointe-Noire — souvent liés au secteur
+        pétrolier — ont des exigences électriques élevées : climatisation centralisée,
+        pompes de piscine, ascenseurs, éclairage de qualité, et surtout une continuité
+        de service absolue. Un groupe électrogène qui ne démarre pas pendant une coupure
+        SNEC, c'est une hôtellerie paralysée et des clients mécontents.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Groupes électrogènes de secours (coupures SNEC fréquentes)</li>
+            <li>Moteurs de climatiseurs centraux et splits</li>
+            <li>Pompes de piscine et de circulation d'eau chaude</li>
+            <li>Moteurs d'ascenseurs</li>
+            <li>Tableaux de distribution par étage</li>
+            <li>Éclairage intérieur et extérieur (circuits dédiés)</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Coupures SNEC fréquentes : groupe de secours indispensable</li>
+            <li>Surtension au retour réseau : destruction d'équipements sensibles</li>
+            <li>Panne climatisation : insupportable en climat tropical</li>
+            <li>Panne ascenseur : risque de blocage de personnes</li>
+            <li>Court-circuit : risque d'incendie dans un établissement recevant du public</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Maintenance préventive des groupes électrogènes (vidange, tests de charge)</li>
+            <li>Rebobinage des moteurs de climatiseurs et pompes</li>
+            <li>Vérification et mise à jour des tableaux de distribution</li>
+            <li>Installation de protections surtension (parafoudres)</li>
+            <li>Dépannage urgent pour rétablir le service rapidement</li>
+            <li>Fiches de maintenance avec planning d'entretien annuel</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Notions clés</h4>
+          <ul>
+            <li><strong>ATS :</strong> transfert automatique sur groupe en moins de 10 secondes — les clients ne voient presque rien</li>
+            <li><strong>Parafoudre :</strong> protège les équipements électroniques des surtensions au retour du réseau SNEC</li>
+            <li><strong>Contrat de maintenance :</strong> la formule la plus rentable pour un hôtel — tarif fixe mensuel, zéro surprise</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=70" alt="Hôtel résidence" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=70" alt="Groupe électrogène hôtel" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=70" alt="Technicien maintenance hôtel" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20gère%20un%20hôtel%20ou%20une%20résidence%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Hôtels &amp; Résidences</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── IMPRIMERIES & ATELIERS ── -->
+<div class="modal-backdrop" id="modal-imprimeries">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('imprimeries')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1601987177651-8edfe6c20009?w=900&q=80" alt="Imprimerie atelier industriel machines" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">Imprimeries &amp; Ateliers</div>
+      <p class="modal-intro">
+        Les ateliers de production — imprimeries offset, ateliers de menuiserie, de
+        métallurgie, de couture industrielle — font tourner des machines-outils dont
+        les moteurs travaillent en cycles courts intensifs. Démarrages fréquents,
+        charges variables, environnement poussiéreux ou chargé en solvants :
+        c'est l'une des conditions les plus agressives pour un moteur électrique.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Moteurs de presses offset et machines d'impression</li>
+            <li>Moteurs de machines de menuiserie (scies, raboteuses)</li>
+            <li>Compresseurs d'air des ateliers</li>
+            <li>Ventilateurs et extracteurs de fumées/solvants</li>
+            <li>Tableaux de distribution de l'atelier</li>
+            <li>Moteurs de pompes de lubrification</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Démarrages fréquents : surchauffe et vieillissement accéléré</li>
+            <li>Poussières de papier/bois : colmatage des ventilations moteur</li>
+            <li>Solvants d'imprimerie : dégradation de l'isolement des bobinages</li>
+            <li>Panne machine : arrêt total de la production, commandes non honorées</li>
+            <li>Court-circuit sur atelier avec solvants : risque d'incendie majeur</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Rebobinage de moteurs de machines-outils</li>
+            <li>Nettoyage et vérification des ventilations moteur</li>
+            <li>Remplacement de démarreurs et contacteurs usés</li>
+            <li>Câblage de protections thermiques et magnétiques</li>
+            <li>Dépannage express pour réduire l'arrêt de production</li>
+            <li>Audit électrique de l'atelier pour prévenir les incidents</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Notions clés</h4>
+          <ul>
+            <li><strong>Relais thermique :</strong> protection standard des moteurs contre la surcharge — à calibrer précisément selon le courant nominal</li>
+            <li><strong>Contacteur :</strong> interrupteur commandé qui s'use sur les démarrages fréquents — maintenance à prévoir tous les 6 mois en atelier intensif</li>
+            <li><strong>Imprégnation :</strong> vernis protecteur appliqué sur les bobinages après rebobinage — protège contre les solvants et l'humidité</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1601987177651-8edfe6c20009?w=400&q=70" alt="Imprimerie machines" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur machine-outil" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=400&q=70" alt="Câblage atelier industriel" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20gère%20un%20atelier%20ou%20une%20imprimerie%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Imprimeries &amp; Ateliers</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PME LOCALES ── -->
+<div class="modal-backdrop" id="modal-pme">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('pme')">✕</button>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=80" alt="PME locale bureau entreprise Congo" loading="lazy"/>
+    <div class="modal-hero-overlay"></div>
+    <div class="modal-body">
+      <div class="modal-sector-label">// Secteur</div>
+      <div class="modal-title">PME Locales</div>
+      <p class="modal-intro">
+        Les petites et moyennes entreprises de Pointe-Noire — commerces, supermarchés,
+        garages, cliniques, stations-service — ont souvent des besoins électriques
+        non couverts faute d'un prestataire disponible et abordable. Elles subissent
+        les coupures SNEC, l'usure des équipements et les pannes sans avoir
+        forcément les moyens de grandes sociétés d'ingénierie. C'est exactement
+        là que j'interviens : réactivité, proximité, prix justes.
+      </p>
+      <div class="modal-cols">
+        <div class="modal-block">
+          <h4>⚙️ Équipements concernés</h4>
+          <ul>
+            <li>Groupes électrogènes de secours (toutes puissances)</li>
+            <li>Climatiseurs (moteurs de compresseurs et ventilateurs)</li>
+            <li>Pompes à eau et surpresseurs</li>
+            <li>Tableaux électriques et disjoncteurs</li>
+            <li>Éclairage intérieur et enseigne lumineuse</li>
+            <li>Moteurs de portails automatiques et rideaux métalliques</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>⚠️ Risques &amp; enjeux</h4>
+          <ul>
+            <li>Coupures SNEC : perte d'activité directe sans groupe de secours</li>
+            <li>Installation électrique vieillissante : risque d'incendie</li>
+            <li>Surtensions : destruction d'appareils électroniques coûteux</li>
+            <li>Panne climatisation : conditions de travail dégradées</li>
+            <li>Absence de maintenance : panne toujours au pire moment</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>🔧 Mes interventions</h4>
+          <ul>
+            <li>Maintenance et dépannage de groupes électrogènes</li>
+            <li>Rebobinage de moteurs de climatiseurs et pompes</li>
+            <li>Mise aux normes et remplacement de tableaux électriques</li>
+            <li>Installation de protections contre les surtensions</li>
+            <li>Contrats de maintenance mensuelle ou trimestrielle</li>
+            <li>Devis gratuit et intervention rapide à Pointe-Noire</li>
+          </ul>
+        </div>
+        <div class="modal-block">
+          <h4>📋 Pourquoi un contrat de maintenance ?</h4>
+          <ul>
+            <li><strong>Coût prévisible :</strong> un tarif fixe mensuel au lieu de factures d'urgence imprévisibles</li>
+            <li><strong>Priorité d'intervention :</strong> les clients sous contrat sont servis en premier</li>
+            <li><strong>Durée de vie prolongée :</strong> un moteur maintenu dure 2 à 3× plus longtemps</li>
+            <li><strong>Tranquillité d'esprit :</strong> vous gérez votre business, je gère vos équipements</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=70" alt="PME locale bureau" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=70" alt="Groupe électrogène PME" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=70" alt="Technicien intervention PME" loading="lazy"/>
+      </div>
+      <div class="modal-cta">
+        <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20gère%20une%20PME%20à%20Pointe-Noire%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis PME</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">// Me contacter</div>
+    <h2>Parlons de votre<br>projet</h2>
+    <p class="section-intro">Devis gratuit et sans engagement. Je réponds sous 24h.</p>
+
+    <div class="contact-cards">
+      <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20souhaite%20un%20devis"
+         class="contact-card" target="_blank">
+        <span class="cc-icon">💬</span>
+        <span class="cc-label">WhatsApp</span>
+        <span class="cc-val">+242 06 476 7991</span>
+      </a>
+      <a href="tel:+242053166318" class="contact-card">
+        <span class="cc-icon">📞</span>
+        <span class="cc-label">Appel direct</span>
+        <span class="cc-val">+242 05 316 6318</span>
+      </a>
+      <a href="https://www.facebook.com/Serizawa.9990" class="contact-card" target="_blank">
+        <span class="cc-icon">📘</span>
+        <span class="cc-label">Facebook</span>
+        <span class="cc-val">Deus Electric</span>
+      </a>
+    </div>
+
+    <div class="zone">
+      <strong>Zone d'intervention :</strong> Pointe-Noire et alentours — Déplacement possible sur projet
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="logo">Deus<span style="color:var(--orange)">Electric</span></div>
+  <p>© 2025 Deus Electric — Pointe-Noire, République du Congo</p>
+  <p style="color:var(--orange); font-size:0.75rem;">⚡ Fait avec passion</p>
+</footer>
+
+
+<script>
+  function openModal(id) {
+    const backdrop = document.getElementById('modal-' + id);
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(id) {
+    const backdrop = document.getElementById('modal-' + id);
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Fermer en cliquant sur le fond sombre
+  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+    backdrop.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Fermer avec la touche Échap
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop.open').forEach(el => {
+        el.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
+</body>
+</html>
