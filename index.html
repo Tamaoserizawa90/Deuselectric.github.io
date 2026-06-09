@@ -1722,3 +1722,42 @@
 </script>
 </body>
 </html>
+
+<!-- Formulaire de devis -->
+<section id="formulaire" style="padding:40px 20px;background:#f5f5f5;text-align:center">
+  <h2>Demande de Devis</h2>
+  <form id="devisForm" style="max-width:500px;margin:auto">
+    <input type="text" id="nom" placeholder="Votre nom" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"><br>
+    <input type="tel" id="telephone" placeholder="Votre téléphone" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"><br>
+    <input type="text" id="service" placeholder="Service souhaité" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"><br>
+    <textarea id="message" placeholder="Votre message" rows="4" style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"></textarea><br>
+    <button type="submit" style="background:#e67e22;color:white;padding:12px 30px;border:none;border-radius:5px;font-size:16px;cursor:pointer">Envoyer la demande</button>
+    <p id="reponse" style="margin-top:15px;font-weight:bold"></p>
+  </form>
+</section>
+
+<script>
+document.getElementById('devisForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const reponse = document.getElementById('reponse');
+  reponse.textContent = 'Envoi en cours...';
+  try {
+    const res = await fetch('https://deus-electric-backend.onrender.com/devis', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        nom: document.getElementById('nom').value,
+        telephone: document.getElementById('telephone').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value
+      })
+    });
+    const data = await res.json();
+    reponse.textContent = '✅ Demande envoyée ! Je vous contacte sous 24h.';
+    reponse.style.color = 'green';
+  } catch(err) {
+    reponse.textContent = '❌ Erreur, réessayez ou contactez-moi sur WhatsApp.';
+    reponse.style.color = 'red';
+  }
+});
+</script>
