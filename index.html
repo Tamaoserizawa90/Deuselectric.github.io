@@ -1736,28 +1736,26 @@
   </form>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-document.getElementById('devisForm').addEventListener('submit', async function(e) {
+emailjs.init("n7ksL6OuJGUBlrkxo");
+document.getElementById('devisForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const reponse = document.getElementById('reponse');
   reponse.textContent = 'Envoi en cours...';
-  try {
-    const res = await fetch('https://deus-electric-backend.onrender.com/devis', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        nom: document.getElementById('nom').value,
-        telephone: document.getElementById('telephone').value,
-        service: document.getElementById('service').value,
-        message: document.getElementById('message').value
-      })
+  const params = {
+    nom: document.getElementById('nom').value,
+    telephone: document.getElementById('telephone').value,
+    service: document.getElementById('service').value,
+    message: document.getElementById('message').value
+  };
+  emailjs.send('service_6jsmrvc', 'template_ku27iwy', params)
+    .then(function() {
+      reponse.textContent = '✅ Demande envoyée ! Je vous contacte sous 24h.';
+      reponse.style.color = 'green';
+    }, function(error) {
+      reponse.textContent = '❌ Erreur, contactez-moi sur WhatsApp.';
+      reponse.style.color = 'red';
     });
-    const data = await res.json();
-    reponse.textContent = '✅ Demande envoyée ! Je vous contacte sous 24h.';
-    reponse.style.color = 'green';
-  } catch(err) {
-    reponse.textContent = '❌ Erreur, réessayez ou contactez-moi sur WhatsApp.';
-    reponse.style.color = 'red';
-  }
 });
 </script>
