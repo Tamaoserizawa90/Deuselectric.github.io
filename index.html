@@ -1736,26 +1736,32 @@
   </form>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-emailjs.init("n7ksL6OuJGUBlrkxo");
-document.getElementById('devisForm').addEventListener('submit', function(e) {
+document.getElementById('devisForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const reponse = document.getElementById('reponse');
   reponse.textContent = 'Envoi en cours...';
-  const params = {
+  const formData = {
     nom: document.getElementById('nom').value,
     telephone: document.getElementById('telephone').value,
     service: document.getElementById('service').value,
     message: document.getElementById('message').value
   };
-  emailjs.send('service_6jsmrvc', 'template_ku27iwy', params)
-    .then(function() {
+  try {
+    const res = await fetch('https://formspree.io/f/mqeowbkz', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(formData)
+    });
+    if (res.ok) {
       reponse.textContent = '✅ Demande envoyée ! Je vous contacte sous 24h.';
       reponse.style.color = 'green';
-    }, function(error) {
-      reponse.textContent = '❌ Erreur, contactez-moi sur WhatsApp.';
-      reponse.style.color = 'red';
-    });
+    } else {
+      throw new Error('Erreur');
+    }
+  } catch(err) {
+    reponse.textContent = '❌ Erreur, contactez-moi sur WhatsApp.';
+    reponse.style.color = 'red';
+  }
 });
 </script>
