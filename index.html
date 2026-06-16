@@ -2,6 +2,17 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#ff6b1a" />
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('PWA active'))
+        .catch(err => console.log('Erreur SW:', err));
+    });
+  }
+</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deus Electric — Électricité Industrielle & Rebobinage Moteurs | Pointe-Noire</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -75,7 +86,7 @@
     .hero-img {
       position: absolute;
       inset: 0;
-      background-image: url('assets/image3.png');
+      background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=80');
       background-size: cover;
       background-position: center 40%;
       filter: brightness(0.35) saturate(0.7);
@@ -764,6 +775,7 @@
     <li><a href="#galerie">Galerie</a></li>
     <li><a href="#about">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#formulaire">Devis</a></li>
   </ul>
 </nav>
 
@@ -815,7 +827,7 @@
       <div class="service-card">
         <div class="card-img">
           <img
-            src="assets/image6.png"
+            src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=75"
             alt="Moteur électrique asynchrone triphasé"
             loading="lazy"
           />
@@ -832,7 +844,7 @@
       <div class="service-card">
         <div class="card-img">
           <img
-            src="assets/image2.jpg"
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75"
             alt="Tableau électrique industriel installation"
             loading="lazy"
           />
@@ -849,7 +861,7 @@
       <div class="service-card">
         <div class="card-img">
           <img
-            src="assets/image4.png"
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=75"
             alt="Transformateur électrique haute tension"
             loading="lazy"
           />
@@ -866,7 +878,7 @@
       <div class="service-card">
         <div class="card-img">
           <img
-            src="assets/image3.jpg"
+            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=75"
             alt="Technicien diagnostic électrique industriel"
             loading="lazy"
           />
@@ -883,7 +895,7 @@
       <div class="service-card">
         <div class="card-img">
           <img
-            src="assets/image1.png"
+            src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=75"
             alt="Câblage armoire électrique démarrage moteur"
             loading="lazy"
           />
@@ -900,7 +912,7 @@
       <div class="service-card">
         <div class="card-img">
           <img
-            src="assets/image4.jpg"
+            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=75"
             alt="Réseau distribution électrique pylônes"
             loading="lazy"
           />
@@ -932,7 +944,7 @@
       <!-- Grande image gauche : moteur asynchrone ouvert -->
       <div class="gal-item">
         <img
-          src="assets/image6.png"
+          src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80"
           alt="Moteur asynchrone triphasé ouvert rebobinage"
           loading="lazy"
         />
@@ -942,7 +954,7 @@
       <!-- Image haute droite -->
       <div class="gal-item">
         <img
-          src="assets/image4.jpg"
+          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&q=75"
           alt="Transformateur électrique"
           loading="lazy"
         />
@@ -952,7 +964,7 @@
       <!-- Image basse droite haut -->
       <div class="gal-item">
         <img
-          src="assets/image2.png"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=75"
           alt="Armoire électrique industrielle"
           loading="lazy"
         />
@@ -962,7 +974,7 @@
       <!-- Bas gauche -->
       <div class="gal-item">
         <img
-          src="assets/image1.jpg"
+          src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=500&q=75"
           alt="Câblage industriel moteur"
           loading="lazy"
         />
@@ -972,7 +984,7 @@
       <!-- Bas droite -->
       <div class="gal-item">
         <img
-          src="assets/image3.png"
+          src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=500&q=75"
           alt="Technicien en intervention électrique"
           loading="lazy"
         />
@@ -994,7 +1006,7 @@
       <div class="about-photo">
         <!-- Image d'atelier / technicien au travail -->
         <img
-          src="assets/image5.png"
+          src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80"
           alt="Technicien électricien industriel en intervention"
           loading="lazy"
         />
@@ -1081,7 +1093,7 @@
 <div class="modal-backdrop" id="modal-petrole">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('petrole')">✕</button>
-    <img class="modal-hero" src="assets/image3.png" alt="Pétrole et gaz plateforme industrielle" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900&q=80" alt="Pétrole et gaz plateforme industrielle" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1140,9 +1152,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image4.jpg" alt="Plateforme pétrolière" loading="lazy"/>
-        <img src="assets/image6.jpg" alt="Moteur pompe industrielle" loading="lazy"/>
-        <img src="assets/image2.jpg" alt="Armoire électrique site pétrolier" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=70" alt="Plateforme pétrolière" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur pompe industrielle" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Armoire électrique site pétrolier" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20le%20secteur%20p%C3%A9trolier%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Pétrole &amp; Gaz</a>
@@ -1155,7 +1167,7 @@
 <div class="modal-backdrop" id="modal-mines">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('mines')">✕</button>
-    <img class="modal-hero" src="assets/image4.png" alt="Mine carrière industrie extractive" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1578323851363-cf6c1a0ac6b7?w=900&q=80" alt="Mine carrière industrie extractive" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1210,9 +1222,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image4.jpg" alt="Carrière mine extraction" loading="lazy"/>
-        <img src="assets/image6.jpg" alt="Moteur industriel lourd" loading="lazy"/>
-        <img src="assets/image1.jpg" alt="Câblage armoire mine" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1578323851363-cf6c1a0ac6b7?w=400&q=70" alt="Carrière mine extraction" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur industriel lourd" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=400&q=70" alt="Câblage armoire mine" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20le%20secteur%20minier%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Mines &amp; Carrières</a>
@@ -1225,7 +1237,7 @@
 <div class="modal-backdrop" id="modal-btp">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('btp')">✕</button>
-    <img class="modal-hero" src="assets/image2.png" alt="BTP chantier construction" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="BTP chantier construction" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1281,9 +1293,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image3.jpg" alt="Chantier BTP construction" loading="lazy"/>
-        <img src="assets/image2.jpg" alt="Tableau électrique bâtiment" loading="lazy"/>
-        <img src="assets/image1.jpg" alt="Câblage installation électrique" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=70" alt="Chantier BTP construction" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Tableau électrique bâtiment" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=400&q=70" alt="Câblage installation électrique" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20le%20BTP%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis BTP &amp; Construction</a>
@@ -1296,7 +1308,7 @@
 <div class="modal-backdrop" id="modal-telecom">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('telecom')">✕</button>
-    <img class="modal-hero" src="assets/image2.png" alt="Télécommunications antenne relais" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80" alt="Télécommunications antenne relais" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1352,9 +1364,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image2.jpg" alt="Station BTS télécommunications" loading="lazy"/>
-        <img src="assets/image1.jpg" alt="Réseau distribution électrique" loading="lazy"/>
-        <img src="assets/image3.jpg" alt="Technicien maintenance électrique" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=70" alt="Station BTS télécommunications" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=70" alt="Réseau distribution électrique" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=70" alt="Technicien maintenance électrique" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20les%20t%C3%A9l%C3%A9communications%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Télécommunications</a>
@@ -1367,7 +1379,7 @@
 <div class="modal-backdrop" id="modal-agro">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('agro')">✕</button>
-    <img class="modal-hero" src="assets/image4.png" alt="Industrie agroalimentaire production" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=900&q=80" alt="Industrie agroalimentaire production" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1422,9 +1434,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image4.jpg" alt="Industrie agroalimentaire" loading="lazy"/>
-        <img src="assets/image6.jpg" alt="Moteur compresseur frigorifique" loading="lazy"/>
-        <img src="assets/image2.jpg" alt="Tableau électrique production" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&q=70" alt="Industrie agroalimentaire" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur compresseur frigorifique" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70" alt="Tableau électrique production" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20travaille%20dans%20l%27agroalimentaire%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Agroalimentaire</a>
@@ -1437,7 +1449,7 @@
 <div class="modal-backdrop" id="modal-hotels">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('hotels')">✕</button>
-    <img class="modal-hero" src="assets/image2.png" alt="Hôtel résidence luxe électricité" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="Hôtel résidence luxe électricité" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1492,9 +1504,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image2.jpg" alt="Hôtel résidence" loading="lazy"/>
-        <img src="assets/image4.jpg" alt="Groupe électrogène hôtel" loading="lazy"/>
-        <img src="assets/image3.jpg" alt="Technicien maintenance hôtel" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=70" alt="Hôtel résidence" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=70" alt="Groupe électrogène hôtel" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=70" alt="Technicien maintenance hôtel" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20gère%20un%20hôtel%20ou%20une%20résidence%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Hôtels &amp; Résidences</a>
@@ -1507,7 +1519,7 @@
 <div class="modal-backdrop" id="modal-imprimeries">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('imprimeries')">✕</button>
-    <img class="modal-hero" src="assets/image1.png" alt="Imprimerie atelier industriel machines" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1601987177651-8edfe6c20009?w=900&q=80" alt="Imprimerie atelier industriel machines" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1562,9 +1574,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image1.jpg" alt="Imprimerie machines" loading="lazy"/>
-        <img src="assets/image6.jpg" alt="Moteur machine-outil" loading="lazy"/>
-        <img src="assets/image1.jpg" alt="Câblage atelier industriel" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1601987177651-8edfe6c20009?w=400&q=70" alt="Imprimerie machines" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=70" alt="Moteur machine-outil" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=400&q=70" alt="Câblage atelier industriel" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20gère%20un%20atelier%20ou%20une%20imprimerie%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis Imprimeries &amp; Ateliers</a>
@@ -1577,7 +1589,7 @@
 <div class="modal-backdrop" id="modal-pme">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('pme')">✕</button>
-    <img class="modal-hero" src="assets/image3.png" alt="PME locale bureau entreprise Congo" loading="lazy"/>
+    <img class="modal-hero" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=80" alt="PME locale bureau entreprise Congo" loading="lazy"/>
     <div class="modal-hero-overlay"></div>
     <div class="modal-body">
       <div class="modal-sector-label">// Secteur</div>
@@ -1634,9 +1646,9 @@
         </div>
       </div>
       <div class="modal-gallery">
-        <img src="assets/image3.jpg" alt="PME locale bureau" loading="lazy"/>
-        <img src="assets/image4.jpg" alt="Groupe électrogène PME" loading="lazy"/>
-        <img src="assets/image3.jpg" alt="Technicien intervention PME" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=70" alt="PME locale bureau" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=70" alt="Groupe électrogène PME" loading="lazy"/>
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=70" alt="Technicien intervention PME" loading="lazy"/>
       </div>
       <div class="modal-cta">
         <a href="https://wa.me/242064767991?text=Bonjour%2C%20je%20gère%20une%20PME%20à%20Pointe-Noire%20et%20souhaite%20un%20devis" class="btn btn-primary" target="_blank">💬 Demander un devis PME</a>
@@ -1678,6 +1690,58 @@
     </div>
   </div>
 </section>
+
+<!-- ═══════════════ FORMULAIRE DE DEVIS ═══════════════ -->
+<section id="formulaire" style="background:var(--noir); padding:5rem 2rem;">
+  <div class="container" style="max-width:600px;">
+    <div class="section-label">// Devis en ligne</div>
+    <h2>Demande de Devis</h2>
+    <p class="section-intro" style="margin-bottom:2rem;">Remplissez ce formulaire et je vous réponds sous 24h.</p>
+    <form id="devisForm" style="display:flex;flex-direction:column;gap:1rem;">
+      <input type="text" id="nom" placeholder="Votre nom complet" required
+        style="background:var(--acier);border:1px solid var(--ligne);color:var(--blanc);padding:0.9rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;width:100%;">
+      <input type="tel" id="telephone" placeholder="Votre numéro de téléphone" required
+        style="background:var(--acier);border:1px solid var(--ligne);color:var(--blanc);padding:0.9rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;width:100%;">
+      <input type="text" id="service" placeholder="Service souhaité (ex: rebobinage moteur)" required
+        style="background:var(--acier);border:1px solid var(--ligne);color:var(--blanc);padding:0.9rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;width:100%;">
+      <textarea id="message" placeholder="Décrivez votre besoin..." rows="4"
+        style="background:var(--acier);border:1px solid var(--ligne);color:var(--blanc);padding:0.9rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;width:100%;resize:vertical;"></textarea>
+      <button type="submit" class="btn btn-primary" style="align-self:flex-start;">
+        ⚡ Envoyer ma demande
+      </button>
+      <p id="reponse" style="margin-top:0.5rem;font-weight:600;font-size:0.9rem;"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+document.getElementById('devisForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const reponse = document.getElementById('reponse');
+  reponse.textContent = 'Envoi en cours...';
+  reponse.style.color = '#8a8fa8';
+  const formData = new FormData();
+  formData.append('nom', document.getElementById('nom').value);
+  formData.append('telephone', document.getElementById('telephone').value);
+  formData.append('service', document.getElementById('service').value);
+  formData.append('message', document.getElementById('message').value);
+  try {
+    const res = await fetch('https://formspree.io/f/mqeowbkz', {
+      method: 'POST',
+      body: formData,
+      headers: {'Accept': 'application/json'}
+    });
+    if (res.ok) {
+      reponse.textContent = '✅ Demande envoyée ! Je vous contacte sous 24h.';
+      reponse.style.color = '#4caf50';
+      document.getElementById('devisForm').reset();
+    } else { throw new Error(); }
+  } catch(err) {
+    reponse.textContent = '❌ Erreur — contactez-moi sur WhatsApp.';
+    reponse.style.color = '#ff6b1a';
+  }
+});
+</script>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
@@ -1722,45 +1786,3 @@
 </script>
 </body>
 </html>
-
-<!-- Formulaire de devis -->
-<section id="formulaire" style="padding:40px 20px;background:#f5f5f5;text-align:center">
-  <h2>Demande de Devis</h2>
-  <form id="devisForm" style="max-width:500px;margin:auto">
-    <input type="text" id="nom" placeholder="Votre nom" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"><br>
-    <input type="tel" id="telephone" placeholder="Votre téléphone" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"><br>
-    <input type="text" id="service" placeholder="Service souhaité" required style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"><br>
-    <textarea id="message" placeholder="Votre message" rows="4" style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px"></textarea><br>
-    <button type="submit" style="background:#e67e22;color:white;padding:12px 30px;border:none;border-radius:5px;font-size:16px;cursor:pointer">Envoyer la demande</button>
-    <p id="reponse" style="margin-top:15px;font-weight:bold"></p>
-  </form>
-</section>
-
-<script>
-document.getElementById('devisForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const reponse = document.getElementById('reponse');
-  reponse.textContent = 'Envoi en cours...';
-  const formData = new FormData();
-  formData.append('nom', document.getElementById('nom').value);
-  formData.append('telephone', document.getElementById('telephone').value);
-  formData.append('service', document.getElementById('service').value);
-  formData.append('message', document.getElementById('message').value);
-  try {
-    const res = await fetch('https://formspree.io/f/mqeowbkz', {
-      method: 'POST',
-      body: formData,
-      headers: {'Accept': 'application/json'}
-    });
-    if (res.ok) {
-      reponse.textContent = '✅ Demande envoyée ! Je vous contacte sous 24h.';
-      reponse.style.color = 'green';
-    } else {
-      throw new Error('Erreur');
-    }
-  } catch(err) {
-    reponse.textContent = '❌ Erreur, contactez-moi sur WhatsApp.';
-    reponse.style.color = 'red';
-  }
-});
-</script>
